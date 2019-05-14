@@ -1,0 +1,34 @@
+{   username: "name (string)",
+    indicators: [   {indicator_name: "name (string)",
+                    observations_number: "value (number)",
+                    observations_period: "period(string: start_date (YYYYMMDD) - end_date(YYYYMMDD))",
+                    observations:   [   {observation_date: "date (YYYYMMDD)",
+                                        observation_value: "value",
+                                        observation_notes: "notes (string)"},
+
+                                        ...,
+
+                                        {observation_date: "date (YYYYMMDD)",
+                                        observation_value: "value",
+                                        observation_notes: "notes (string)"}
+                                    ]
+                    },
+
+                    ...,
+
+                    {indicator_name: "name (string)",
+                    observations_number: "value (number)",
+                    observations_period: "period(string: start_date (YYYYMMDD) - end_date(YYYYMMDD))",
+                    observations:   [   {observation_date: "date (YYYYMMDD)",
+                                        observation_value: "value",
+                                        observation_notes: "notes (string)"},
+
+                                        ...,
+                                        
+                                        {observation_date: "date (YYYYMMDD)",
+                                        observation_value: "value",
+                                        observation_notes: "notes (string)"}
+                                    ]
+                }
+                ]
+}
