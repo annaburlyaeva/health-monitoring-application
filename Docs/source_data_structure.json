@@ -1,5 +1,6 @@
 {   username: "name (string)",
     indicators: [   {indicator_name: "name (string)",
+                    indicator_type: "boolean, number, scale (string)",
                     observations_number: "value (number)",
                     observations_period: "period(string: start_date (YYYYMMDD) - end_date(YYYYMMDD))",
                     observations:   [   {observation_date: "date (YYYYMMDD)",
@@ -17,6 +18,7 @@
                     ...,
 
                     {indicator_name: "name (string)",
+                    indicator_type: "boolean, number, scale (string)",
                     observations_number: "value (number)",
                     observations_period: "period(string: start_date (YYYYMMDD) - end_date(YYYYMMDD))",
                     observations:   [   {observation_date: "date (YYYYMMDD)",
