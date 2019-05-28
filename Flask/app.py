@@ -1,23 +1,24 @@
 # import necessary libraries
-from flask import Flask, render_template
+from flask import Flask, render_template,jsonify
+from json_data import json_data
+
 
 # create instance of Flask app
 app = Flask(__name__)
 
 # List of dictionaries
 
-import prep
+
 
 # create route that renders index.html template
 @app.route("/")
-def index():
-    data= prep.loadData()
-    return render_template("index.html", dogs=data)
+def index(): 
+    return render_template("index.html")
 
 
-@app.route("/new_data")
-def newObservation(new_data):
-        prep.saveToDb(new_data)
+@app.route("/charts")
+def get_data():
+       return jsonify(json_data)
 
 
 
