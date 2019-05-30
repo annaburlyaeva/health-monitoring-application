@@ -10,7 +10,7 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import Drawer from '@material-ui/core/Drawer';
@@ -22,8 +22,18 @@ import { makeStyles } from '@material-ui/core/styles';
 import Chart from './Chart';
 import Orders from './Orders';
 
-import logo from './logo.svg';
+
 import './App.css';
+import { Button } from '@material-ui/core';
+
+
+import FormControl from '@material-ui/core/FormControl';
+import FormHelperText from '@material-ui/core/FormHelperText';
+
+import NativeSelect from '@material-ui/core/NativeSelect';
+
+import Icon from '@mdi/react'
+import { mdiAccountBadgeHorizontalOutline } from '@mdi/js'
 
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
@@ -117,8 +127,20 @@ function App() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const [state, setState] = React.useState({
+    age: ''
+  });
+
+
+  const handleChange = name => event => {
+    setState({
+      ...state,
+      [name]: event.target.value,
+    });
+  };
+
   return (
-    <div className="App">
+    <div className={classes.root}>
       <AppBar position="absolute"  className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -134,8 +156,13 @@ function App() {
             Health Monitor
           </Typography>
           <IconButton color="inherit">
-            <Badge badgeContent={3} color="secondary">
-              <NotificationsIcon />
+            <Badge> 
+              <Icon path={mdiAccountBadgeHorizontalOutline}
+                size={1.5}
+                horizontal
+                
+                color="rgb(255, 255, 255)"
+              />
             </Badge>
           </IconButton>
         </Toolbar>
@@ -158,23 +185,54 @@ function App() {
         <Divider />
         <List>{secondaryListItems}</List>
       </Drawer>
+
+      
         
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
+            <Grid 
+              container
+              item xs={1.5} 
+              direction="row"
+              justify="space-between"
+              alignItems="flex-start"
+            >               
+              <FormControl className={classes.formControl}>
+                <NativeSelect
+                  className={classes.selectEmpty}
+                  value={state.age}
+                  name="age"
+                  onChange={handleChange('age')}
+                >
+                  <option value="" disabled>
+                    Indicator
+                  </option>
+                  <option value={10}>Indicator 1</option>
+                  <option value={20}>Indicator 2</option>
+                  <option value={30}>Indicator 3</option>
+                </NativeSelect>
+                <FormHelperText>Choose an indicator</FormHelperText>
+              </FormControl>
+             
+              <Paper> 
+                <Button>ADD NEW DATA</Button> 
+              </Paper> 
+
+            </Grid>
             {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
+            <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
+            {/* Recent Deposits
             <Grid item xs={12} md={4} lg={3}>
               <Paper className={fixedHeightPaper}>
-              {/*<Deposits />*/}
+              {/*<Deposits />
               </Paper>
-            </Grid>
+            </Grid> */}
             {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>

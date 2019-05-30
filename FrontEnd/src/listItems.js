@@ -4,11 +4,14 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import PeopleIcon from '@material-ui/icons/People';
-import BarChartIcon from '@material-ui/icons/BarChart';
-import LayersIcon from '@material-ui/icons/Layers';
 import AssignmentIcon from '@material-ui/icons/Assignment';
+
+import Icon from '@mdi/react'
+import { mdiFileDocumentBoxMultipleOutline } from '@mdi/js'
+import { mdiPill } from '@mdi/js'
+import { mdiFormatListBulletedType } from '@mdi/js'
+import { mdiFlattr } from '@mdi/js'
+
 
 export const mainListItems = (
   <div>
@@ -16,31 +19,51 @@ export const mainListItems = (
       <ListItemIcon>
         <DashboardIcon />
       </ListItemIcon>
-      <ListItemText primary="Dashboard" />
+    <ListItemText primary="Dashboard" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Orders" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Customers" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <BarChartIcon />
+        <Icon path={mdiFileDocumentBoxMultipleOutline}
+          size={1}
+          horizontal
+          vertical
+          color="rgba(0, 0, 0, 0.54)"
+          />
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <LayersIcon />
+        <Icon path={mdiPill}
+            size={1}
+            horizontal
+            vertical
+            color="rgba(0, 0, 0, 0.54)"
+        />      
       </ListItemIcon>
-      <ListItemText primary="Integrations" />
+      <ListItemText primary="Medications" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <Icon path={mdiFormatListBulletedType}
+            size={1}
+            horizontal
+            vertical
+            color="rgba(0, 0, 0, 0.54)"
+        />      
+      </ListItemIcon>
+      <ListItemText primary="Indicators" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <Icon path={mdiFlattr}
+            size={1}
+            horizontal
+            vertical
+            color="rgba(0, 0, 0, 0.54)"
+        />      
+      </ListItemIcon>
+      <ListItemText primary="Interactions" />
     </ListItem>
   </div>
 );
@@ -52,19 +75,19 @@ export const secondaryListItems = (
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
+      <ListItemText primary="Current week" />
+    </ListItem>
+    <ListItem button>
+      <ListItemIcon>
+        <AssignmentIcon />
+      </ListItemIcon>
       <ListItemText primary="Current month" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
         <AssignmentIcon />
       </ListItemIcon>
-      <ListItemText primary="Last quarter" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AssignmentIcon />
-      </ListItemIcon>
-      <ListItemText primary="Year-end sale" />
+      <ListItemText primary="Year to Date" />
     </ListItem>
   </div>
 );
