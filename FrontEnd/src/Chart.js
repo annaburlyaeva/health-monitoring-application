@@ -36,7 +36,7 @@ const data = [
   createData("2018-02-25", 5), 
   createData("2018-02-26", 5), 
   createData("2018-02-27", 5), 
-  createData("2018-02-28", 5) ,
+  createData("2018-02-28", 5),
 ];
 
 

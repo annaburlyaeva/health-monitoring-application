@@ -29,6 +29,13 @@ import { Button } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 
+
+import OutlinedInput from '@material-ui/core/OutlinedInput';
+
+import InputLabel from '@material-ui/core/InputLabel';
+
+import Select from '@material-ui/core/Select';
+
 import NativeSelect from '@material-ui/core/NativeSelect';
 
 import Icon from '@mdi/react'
@@ -127,8 +134,15 @@ function App() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [state, setState] = React.useState({
-    age: ''
+    indicator: ''
   });
+
+  const inputLabel = React.useRef(null);
+
+  const [labelWidth, setLabelWidth] = React.useState(0);
+  React.useEffect(() => {
+    setLabelWidth(inputLabel.current.offsetWidth);
+  }, []);
 
 
   const handleChange = name => event => {
@@ -192,28 +206,48 @@ function App() {
           <Grid container spacing={3}>
             <Grid 
               container
-              item xs={1.5} 
+              item xs={1.5}
               direction="row"
               justify="space-between"
               alignItems="flex-start"
             >               
-              <FormControl className={classes.formControl}>
+              {/* <FormControl className={classes.formControl}>
                 <NativeSelect
                   className={classes.selectEmpty}
-                  value={state.age}
-                  name="age"
-                  onChange={handleChange('age')}
+                  value={state.indicator}
+                  name="indicator"
+                  onChange={handleChange('indicator')}
                 >                 
                   <option value={10}>Indicator 1</option>
                   <option value={20}>Indicator 2</option>
                   <option value={30}>Indicator 3</option>
                 </NativeSelect>
                 <FormHelperText>Choose an indicator</FormHelperText>
-              </FormControl>
+              </FormControl> */}
+
+            <FormControl variant="outlined" className={classes.formControl}>
+              <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                Indicator
+              </InputLabel>
+              <Select
+                native
+                value={state.indicator}
+                onChange={handleChange('indicator')}
+                input={
+                  <OutlinedInput name="indicator" labelWidth={labelWidth} id="outlined-age-native-simple" />
+                }
+              >
+                <option value="" />
+                <option value={10}>Slow acting insulin (morning intake dose)</option>
+                <option value={20}>Fast acting insulin (morning intake dose)</option>
+                <option value={30}>Fast acting insulin (lunch intake dose)</option>
+                <option value={30}>Fast acting insulin (dinner intake dose)</option>
+              </Select>
+            </FormControl>
              
-              <Paper> 
-                <Button>ADD NEW DATA</Button> 
-              </Paper> 
+            <Paper> 
+              <Button variant="contained" size="large" color="primary">ADD NEW DATA</Button> 
+            </Paper> 
 
             </Grid>
             {/* Chart */}
