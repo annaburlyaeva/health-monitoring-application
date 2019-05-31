@@ -19,7 +19,7 @@ import { mainListItems, secondaryListItems } from './listItems';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Chart from './Chart';
-import Orders from './Orders';
+import Details from './Details';
 
 
 import './App.css';
@@ -246,7 +246,7 @@ function App() {
             </FormControl>
              
             <Paper> 
-              <Button variant="contained" size="large" color="primary">ADD NEW DATA</Button> 
+              <Button variant="outlined" size="large" color="primary">ADD NEW DATA</Button> 
             </Paper> 
 
             </Grid>
@@ -257,10 +257,10 @@ function App() {
               </Paper>
             </Grid>
             
-            {/* Indicators data */}
+            {/* Data */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Orders />
+                <Details />
               </Paper>
             </Grid>
           </Grid>
