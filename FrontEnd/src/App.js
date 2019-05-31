@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 
 import MenuIcon from '@material-ui/icons/Menu';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
@@ -159,8 +158,7 @@ function App() {
             <Badge> 
               <Icon path={mdiAccountBadgeHorizontalOutline}
                 size={1.5}
-                horizontal
-                
+                horizontal                
                 color="rgb(255, 255, 255)"
               />
             </Badge>
@@ -205,10 +203,7 @@ function App() {
                   value={state.age}
                   name="age"
                   onChange={handleChange('age')}
-                >
-                  <option value="" disabled>
-                    Indicator
-                  </option>
+                >                 
                   <option value={10}>Indicator 1</option>
                   <option value={20}>Indicator 2</option>
                   <option value={30}>Indicator 3</option>
@@ -227,13 +222,8 @@ function App() {
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits
-            <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
-              {/*<Deposits />
-              </Paper>
-            </Grid> */}
-            {/* Recent Orders */}
+            
+            {/* Indicators data */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
