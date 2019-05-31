@@ -194,9 +194,9 @@ def data_prep():
                         'observations': (temp_list[i])})
 
     final_dict['indicators'] = ind_list
-    
+    print (final_dict)
     out_file = open('json_out','w+')
     json.dump(final_dict,out_file)
-    
+
     return final_dict
 
