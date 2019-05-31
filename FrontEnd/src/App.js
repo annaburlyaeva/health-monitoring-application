@@ -47,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   toolbar: {
-    paddingRight: 24, // keep right padding when drawer closed
+      paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: 'flex',
@@ -99,6 +99,7 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       width: theme.spacing(9),
     },
+    
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
@@ -119,6 +120,10 @@ const useStyles = makeStyles(theme => ({
   fixedHeight: {
     height: 240,
   },
+  buttonHeight: {
+    height: 55,
+  },
+
 }));
 
 
@@ -245,9 +250,9 @@ function App() {
               </Select>
             </FormControl>
              
-            <Paper> 
-              <Button variant="outlined" size="large" color="primary">ADD NEW DATA</Button> 
-            </Paper> 
+            
+              <Button variant="outlined" size="large" color="primary" className={classes.buttonHeight}>ADD NEW DATA</Button> 
+            
 
             </Grid>
             {/* Chart */}
