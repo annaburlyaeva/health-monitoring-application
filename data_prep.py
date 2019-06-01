@@ -1,4 +1,4 @@
-print ("I am here")
+
 def data_prep(db, username):
     from datetime import datetime
     import numpy as np
