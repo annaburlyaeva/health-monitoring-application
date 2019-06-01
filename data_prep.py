@@ -1,4 +1,5 @@
-def data_prep():
+print ("I am here")
+def data_prep(db, username):
     from datetime import datetime
     import numpy as np
     import pandas as pd
@@ -11,7 +12,7 @@ def data_prep():
     from sqlalchemy.orm import Session
     from sqlalchemy import create_engine, func, inspect, and_, or_
 
-    engine = create_engine("mysql://root:password@127.0.0.1:3306/health_monitor_db",pool_pre_ping=True)
+    engine = create_engine(f'mysql://root:password@127.0.0.1:3306/{db}',pool_pre_ping=True)
 
     # Create the inspector and connect it to the engine
     inspector = inspect(engine)
@@ -195,8 +196,15 @@ def data_prep():
 
     final_dict['indicators'] = ind_list
     print (final_dict)
-    out_file = open('json_out','w+')
-    json.dump(final_dict,out_file)
+    
+    final_json = json.dumps(final_dict)
+    print(final_json)
+    
+    f = open("dict.json","w")
+    f.write(final_json)
+    f.close()    
 
     return final_dict
 
+if __name__ == "__main__":
+    data_prep('health_monitor_db', 'juliette_leblanc')
