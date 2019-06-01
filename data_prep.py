@@ -1,4 +1,4 @@
-def data_prep(db):
+def data_prep(db, username):
     import datetime as dt
     import sqlalchemy
     from sqlalchemy.ext.automap import automap_base
@@ -161,16 +161,8 @@ def data_prep(db):
         to_add = (period, delta)
         obs_period_list.append(to_add) 
 
-
-    user_name = session.query(Users.user_nickname).all()[0]
-    user_name_list = []
-    for user in user_name:
-        user_name_list.append(user_name[0])
-
-
     final_dict = {}
-    for user in user_name_list:
-        final_dict['username'] = user
+    final_dict['username'] = username
 
     temp_list =[]
     for i in range(len(indicators_names)):
@@ -182,6 +174,9 @@ def data_prep(db):
 
     out_file = open('json_out','w+')
     json.dump(final_dict,out_file)
+    
+
+    return final_dict
 
 
 
