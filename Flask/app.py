@@ -1,6 +1,6 @@
 # import necessary libraries
 from flask import Flask, render_template,jsonify
-from json_data import json_data
+from json import data
 
 
 # create instance of Flask app
