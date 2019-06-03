@@ -1,31 +1,24 @@
 # import necessary libraries
 from flask import Flask, render_template,jsonify
 from json import data
+from json import list_indic
 
 
 # create instance of Flask app
 app = Flask(__name__)
 
-# List of dictionaries
 
 
 
 # create route that renders index.html template
-@app.route("/")
+@app.route("/", methods = ['GET'])
 def index(): 
-
-    return render_template("index.html")
-
-
-@app.route("/data")
-def get_data():
-
-       trace = {
-              x : data.indicators
-       }
+    return jsonify(data)
 
 
-       return jsonify(trace)
+@app.route("/indicators", method = ['GET'])
+def get_indicators():
+       return jsonify(list_indic)
 
 
 
