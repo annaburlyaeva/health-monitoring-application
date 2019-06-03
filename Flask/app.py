@@ -13,12 +13,19 @@ app = Flask(__name__)
 # create route that renders index.html template
 @app.route("/")
 def index(): 
+
     return render_template("index.html")
 
 
-@app.route("/charts")
+@app.route("/data")
 def get_data():
-       return jsonify(json_data)
+
+       trace = {
+              x : data.indicators
+       }
+
+
+       return jsonify(trace)
 
 
 
