@@ -2,6 +2,7 @@
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
 from user_data import *
+import data_prep
 
 # create instance of Flask app
 app = Flask(__name__)
@@ -22,6 +23,7 @@ def index():
 
 @app.route('/user_json')
 def user_json(): 
+       # data = data_prep(health_monitor_bd, username)
        return jsonify(data)
 
 @app.route("/indicators")
