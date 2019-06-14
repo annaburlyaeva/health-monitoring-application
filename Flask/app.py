@@ -32,6 +32,10 @@ def indicators():
     list_indic = [i['indicator_name'] for i in indicators]
     return jsonify({'list_indicators' : list_indic })
 
+@app.route("/add_indicators", method=['POST'])
+def add_indicator():
+
+       return 'Done', 201
 
 
 if __name__ == "__main__":
