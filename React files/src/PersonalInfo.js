@@ -69,6 +69,25 @@ export default function AddressForm() {
             fullWidth
             autoComplete="lname"
           />
+        </Grid>    
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="height"
+            name="height"
+            label="Height (in)"
+            fullWidth
+            autoComplete="Height"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField 
+            required 
+            id="weight" 
+            name="weight" 
+            label="Weight (lb)" 
+            fullWidth 
+            autoComplete="Weight" />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -105,28 +124,7 @@ export default function AddressForm() {
                 ))}
             </TextField>
             </form>
-        </Grid>
-          
-          
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="height"
-            name="height"
-            label="Height (in)"
-            fullWidth
-            autoComplete="Height"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField 
-            required 
-            id="weight" 
-            name="weight" 
-            label="Weight (lb)" 
-            fullWidth 
-            autoComplete="Weight" />
-        </Grid>
+        </Grid>   
         <Grid item xs={12} sm={6}>
           <TextField
             id="city"

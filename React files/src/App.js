@@ -119,8 +119,11 @@ export default function Registration() {
                   Great! 
                 </Typography>
                 <Typography variant="subtitle1">
-                  You have succesfully entered your indicators. You can add more later if you want.
+                  You have succesfully entered your information. You can add more indicators later if you want.
                 </Typography>
+                <Button onClick={handleNext} className={classes.button} color='primary' variant='contained'>
+                      Go to dashboard
+                </Button>
               </React.Fragment>
             ) : (
               <React.Fragment>

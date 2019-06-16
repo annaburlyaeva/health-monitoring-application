@@ -138,9 +138,8 @@ export default function DetailedExpansionPanel() {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button size="small">Cancel</Button>
           <Button size="small" color="primary">
-            Save
+            Add another indicator
           </Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
