@@ -89,7 +89,7 @@ export default function Orders() {
               > 
             <Typography className={classes.heading}>Slow acting insulin (morning intake dose)</Typography>
             <Typography className={classes.secondaryHeading}>Total observations: 29</Typography>
-            <Typography className={classes.secondaryHeading}>Period of observing: 2018-01-31 - 2018-02-28</Typography>
+            <Typography className={classes.secondaryHeading}>Observation Period: 2018-01-31 - 2018-02-28</Typography>
             </Grid>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
@@ -131,7 +131,7 @@ export default function Orders() {
               > 
             <Typography className={classes.heading}>Fast acting insulin (morning intake dose)</Typography>
             <Typography className={classes.secondaryHeading}>Total observations: 29</Typography>
-            <Typography className={classes.secondaryHeading}>Period of observing: 2018-01-31 - 2018-02-28</Typography>
+            <Typography className={classes.secondaryHeading}>Observation Period: 2018-01-31 - 2018-02-28</Typography>
             </Grid>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
@@ -173,7 +173,7 @@ export default function Orders() {
               > 
             <Typography className={classes.heading}>Fast acting insulin (lunch intake dose)</Typography>
             <Typography className={classes.secondaryHeading}>Total observations: 29</Typography>
-            <Typography className={classes.secondaryHeading}>Period of observing: 2018-01-31 - 2018-02-28</Typography>
+            <Typography className={classes.secondaryHeading}>Observation Period: 2018-01-31 - 2018-02-28</Typography>
             </Grid>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
@@ -206,7 +206,7 @@ export default function Orders() {
             aria-controls="panel4bh-content"
             id="panel4bh-header"
           >
- <Grid 
+              <Grid 
                 container
                 item xs={1.5} 
                 direction="row"
@@ -215,7 +215,7 @@ export default function Orders() {
               > 
             <Typography className={classes.heading}>Fast acting insulin (dinner intake dose)</Typography>
             <Typography className={classes.secondaryHeading}>Total observations: 29</Typography>
-            <Typography className={classes.secondaryHeading}>Period of observing: 2018-01-31 - 2018-02-28</Typography>
+            <Typography className={classes.secondaryHeading}>Observation Period: 2018-01-31 - 2018-02-28</Typography>
             </Grid>
           </ExpansionPanelSummary>
           <ExpansionPanelDetails>
