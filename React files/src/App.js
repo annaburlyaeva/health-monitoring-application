@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import PersonalInfo from './PersonalInfo';
 import HealthSummary from './HealthSummary';
 import Indicators from './Indicators';
+import Review from './Review';
 
 function MadeWithLove() {
   return (
@@ -63,7 +64,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const steps = ['Personal info', 'Health summary', 'Add your indicators'];
+const steps = ['Personal info', 'Health summary', 'Add your indicators', 'Review'];
 
 function getStepContent(step) {
   switch (step) {
@@ -73,6 +74,8 @@ function getStepContent(step) {
       return <HealthSummary />;
     case 2:
       return <Indicators />;
+    case 3:
+      return <Review />;
     default:
       throw new Error('Unknown step');
   }

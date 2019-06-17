@@ -13,18 +13,19 @@ import MenuItem from "@material-ui/core/MenuItem";
 
 const types = [
     {
-      value: "",
+      value: "Numeric (e.g. 30 UI)",
       label: "Numeric (e.g. 30 UI)"
     },
     {
-      value: "",
+      value: "Scale (1-10)",
       label: "Scale (1-10)"
     },
     {
-      value: "",
+      value: "Yes/No",
       label: "Yes/No"
     }
   ];
+  
 const useStyles = makeStyles(theme => ({
   root: {
     width: "100%"
@@ -64,6 +65,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+
 export default function DetailedExpansionPanel() {
   const classes = useStyles();
   const [values, setValues] = React.useState({
@@ -99,7 +101,7 @@ export default function DetailedExpansionPanel() {
                 placeholder= 'e.g. Blood sugar level'
             />
             <TextField
-                id="outlined-select-currency"
+                id="outlined-select-type"
                 select
                 label="Type"
                 className={classes.textField}

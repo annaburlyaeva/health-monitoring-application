@@ -102,7 +102,7 @@ export default function AddressForm() {
         <Grid item xs={12} sm={6}>
           <form className={classes.container} noValidate autoComplete="off">
             <TextField
-                id="outlined-select-currency"
+                id="outlined-select-gender"
                 select
                 label="Gender"
                 className={classes.textField}
