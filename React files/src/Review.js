@@ -31,7 +31,7 @@ export default function Review() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
-        Indicator's summary
+        Diabetes' indicators summary
       </Typography>
       <List disablePadding>
         {indicators.map(indicator => (
