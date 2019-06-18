@@ -136,6 +136,7 @@ def data_prep(db, username):
                                     Users_Indicators_Values.indicator_value, Users_Indicators_Values.notes).\
         filter(Users_Indicators_Values.record_date >= start_date).\
         filter(Users_Indicators_Values.record_date <= end_date).\
+        filter(Users_Indicators_Values.indicator_value > 0).\
         filter(Users_Indicators_Values.indicator_id==i).all()
 
         for i in obs_results: 
