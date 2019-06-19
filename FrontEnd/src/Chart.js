@@ -7,37 +7,6 @@ function createData(date, value) {
   return { date, value };
 }
 
-// const data = [
-//   createData("2018-01-31", 5), 
-//   createData("2018-02-01", 6), 
-//   createData("2018-02-02", 5), 
-//   createData("2018-02-03", 5), 
-//   createData("2018-02-04", 5.5), 
-//   createData("2018-02-05", 5), 
-//   createData("2018-02-06", 5), 
-//   createData("2018-02-07", 5), 
-//   createData("2018-02-08", 5), 
-//   createData("2018-02-09", 5.5), 
-//   createData("2018-02-10", 7), 
-//   createData("2018-02-11", 5.5), 
-//   createData("2018-02-12", 5), 
-//   createData("2018-02-13", 5), 
-//   createData("2018-02-14", 5), 
-//   createData("2018-02-15", 5), 
-//   createData("2018-02-16", 5), 
-//   createData("2018-02-17", 6), 
-//   createData("2018-02-18", 5), 
-//   createData("2018-02-19", 5), 
-//   createData("2018-02-20", 5), 
-//   createData("2018-02-21", 5), 
-//   createData("2018-02-22", 4.5), 
-//   createData("2018-02-23", 4.5), 
-//   createData("2018-02-24", 5), 
-//   createData("2018-02-25", 5), 
-//   createData("2018-02-26", 5), 
-//   createData("2018-02-27", 5), 
-//   createData("2018-02-28", 5),
-// ];
 
 var array = [];
 const indicatorData = [];
@@ -54,7 +23,6 @@ export default function Chart(args) {
   Object.keys(args.json.indicators).forEach(function(key) {
     console.log("test")
 
-
     if (args.json.indicators[key].indicator_name == args.indicator) {
       array.push(args.json.indicators[key].observations);
       console.log(array[0])
@@ -69,9 +37,6 @@ export default function Chart(args) {
 
   });
 
-
-
-  
 
   
   return (

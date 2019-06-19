@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10201,47 +10201,7 @@ var json = {
     let items = [];
     var i;
     
-    // Object.keys(json).forEach(function(key) {
-    //   arr.push(json[key]);
-    // });
-
-  
-    // for (i = 0; i < arr[0].length; i++) { 
-    //   console.log(arr[0][i].indicator_name);
-    //   // text += arr[0][i].indicator_name + "<br>";
-    //   items.push(<option key={i} value={i*10}>{arr[0][i].indicator_name}</option>);
-    // };
-    // console.log(items);
-    // function createSelectItems() {
-   
-    //   let items = [];         
-    //     for (i = 0; i < arr[0].length; i++) { 
-    //       console.log(arr[0][i].indicator_name);
-    //       //text += arr[0][i].indicator_name;
-    //       items.push(<option key={i} value={i*10}>{arr[0][i].indicator_name}</option>);
-    //       //text += <option key={i} value={i*10}>{arr[0][i-1].indicator_name}</option>;
-    //     };
-    //   return items;
-    // } 
     
-    // console.log(createSelectItems());
-
-  //   createSelectItems() {
-  //     let items = [];         
-  //     for (let i = 0; i <= this.props.maxValue; i++) {             
-  //          items.push(<option key={i} value={i}>{i}</option>);   
-  //          //here I will be creating my options dynamically based on
-  //          //what props are currently passed to the parent component
-  //     }
-  //     return items;
-  // }  
- 
-  //   onDropdownSelected(e) {
-  //       console.log("THE VAL", e.target.value);
-  //       //here you will see the current selected value of the select input
-  //   }
-
-
 const drawerWidth = 240;
 const useStyles = makeStyles(theme => ({
   root: {
@@ -10340,9 +10300,13 @@ function App() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [state, setState] = React.useState({
-    indicator: ''
+    indicator: '',
+    first_indicator: 'hello'
   });
+
+
   const inputLabel = React.useRef(null);
+
   const [labelWidth, setLabelWidth] = React.useState(0);
   React.useEffect(() => {
     setLabelWidth(inputLabel.current.offsetWidth);
@@ -10350,68 +10314,29 @@ function App() {
 
 
   const handleChange = name => event => {
-    console.log("Chosen indicator \n"+event.target.value+"\n");
     setState({
       ...state,
       [name]: event.target.value,
     });
   };
 
-  const json = {  
-    indicators:[  
-       {  
-          indicator_name:"Slow acting insulin (morning intake dose)"
-       },
-       {  
-          indicator_name:"Fast acting insulin (morning intake dose)"
-       },
-       {  
-          indicator_name:"Fast acting insulin (lunch intake dose)"
-       },
-       {  
-          indicator_name:"Fast acting insulin (dinner intake dose)"
-       },
-       {  
-          indicator_name:"Morning glucose level"
-       },
-       {  
-          indicator_name:"Lunch glucose level"
-       },
-       {  
-          indicator_name:"Afternoon glucose level"
-       },
-       {  
-          indicator_name:"Dinner glucose level"
-       },
-       {  
-          indicator_name:"Evening glucose level"
-       },
-       {  
-          indicator_name:"Fast insulin (late evening intake dose)"
-       },
-       {  
-          indicator_name:"Late evening snack"
-       }
-    ]
-  };
      
   const createSelectItems = (json) => {
-    console.log("createSelectItems call");
     var arr = [];
-    console.log(arr);
     Object.keys(json).forEach(function(key) {
-      console.log("filling arr")
       arr.push(json[key]);
     });
+    
     return (
-      <Select native value={state.indicator}
+      <Select native value={state.indicator}          
                 onChange={handleChange('indicator')}
                 input={
                   <OutlinedInput name="indicator" labelWidth={labelWidth} id="outlined-age-native-simple" />
                 }
               >
+      
       <option value="" />
-      {arr[0].map(item => {
+       {arr[0].map(item => {
         return(          
           <option value={item.indicator_name}>{item.indicator_name}</option>
         );
@@ -10501,7 +10426,7 @@ function App() {
             {/* Data */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Details />
+                <Details json={full_json} />
               </Paper>
             </Grid>
           </Grid>
