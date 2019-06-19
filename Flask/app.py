@@ -35,6 +35,9 @@ def indicators():
        return jsonify({'list_indicators' : list_indic })
 
 
+# @app.route('/add_data')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
