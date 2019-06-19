@@ -1,7 +1,7 @@
 # import necessary libraries
 from flask import Flask, jsonify
 from flask_cors import CORS, cross_origin
-from user_data import *
+# from user_data import *
 import data_prep
 
 # create instance of Flask app
@@ -19,23 +19,21 @@ def index():
         f"/user_json"
         f"<br/>"
         f"/indicators")
-# @app.route("/data", methods = ['GET'])
+
 
 @app.route('/user_json')
 def user_json(): 
        # data = data_prep(health_monitor_bd, username)
+       data = data_prep.data_prep('health_monitor_db', 'juliette_leblanc')
        return jsonify(data)
 
 @app.route("/indicators")
 def indicators():
-    indicators = data["indicators"]
-    list_indic = [i['indicator_name'] for i in indicators]
-    return jsonify({'list_indicators' : list_indic })
+       data = data_prep.data_prep('health_monitor_db', 'juliette_leblanc')
+       indicators = data["indicators"]
+       list_indic = [i['indicator_name'] for i in indicators]
+       return jsonify({'list_indicators' : list_indic })
 
-@app.route("/add_indicators", method=['POST'])
-def add_indicator():
-
-       return 'Done', 201
 
 
 if __name__ == "__main__":
