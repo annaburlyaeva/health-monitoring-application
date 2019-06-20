@@ -2,7 +2,6 @@ import React from 'react';
 //import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import MobileStepper from '@material-ui/core/MobileStepper';
 //import TextField from '@material-ui/core/TextField';
 //import FormControlLabel from '@material-ui/core/FormControlLabel';
 //import Checkbox from '@material-ui/core/Checkbox';
@@ -12,7 +11,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 //import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Paper from '@material-ui/core/Paper';
@@ -20,9 +19,21 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import StepLabel from '@material-ui/core/StepLabel';
 import StepContent from '@material-ui/core/StepContent';
+import Carousal from './Carousal';
 
 
 
+function MadeWithLove() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {'myHealthApp -  '}
+      <Link color="inherit" href="https://material-ui.com/">
+        
+      </Link>
+      {' Because We Care.'}
+    </Typography>
+  );
+}
 const imgMyimageexample = require('./pic.jpg');
 const useStyles = makeStyles(theme => ({
   root: {
@@ -65,24 +76,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
   },
-  root: {
-    maxWidth: 400,
-    flexGrow: 1,
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    height: 50,
-    paddingLeft: theme.spacing(4),
-    backgroundColor: theme.palette.background.default,
-  },
-  img: {
-    height: 255,
-    maxWidth: 400,
-    overflow: 'hidden',
-    display: 'block',
-    width: '100%',
-  },
 }));
 function getSteps() {
   return ['Sign In/Sign Up', 'Create User Profile', 'Add Indicators'];
@@ -91,8 +84,7 @@ function getSteps() {
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return `Sign Up as new user. 
-      Already a User? Sign In using username and password `;
+      return `Sign Up as a new user. Already a User? Sign In using username and password `;
     case 1:
       return 'Tell Us about yourself!';
     case 2:
@@ -130,11 +122,14 @@ export default function SignInSide() {
           </Button>
           </Toolbar> 
         </AppBar>
-        <Typography variant="h6" align="left" color="primary" component="p"style={{display: 'inline-block'}}>
-          Getting Started with 3 simple steps..
-        </Typography>
-        <div className={classes.root}>
-      <Stepper activeStep={activeStep} orientation="vertical">
+        <Grid container style={{marginTop:20}}>
+        <Typography variant="h6" align="left" color="primary" component="p" display = "inline" gutterBottom style={{marginLeft:10}} >
+          Getting Started in 3 simple steps..
+        </Typography></Grid>
+      <div className={classes.root}>
+      <Grid container spacing={10} justify="space-evenly" >
+          <Grid item xs={3} style={{marginRight:50}}>
+        <Stepper activeStep={activeStep} orientation="vertical" style={{marginTop:10}}>
         {steps.map((label, index) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>
@@ -161,20 +156,31 @@ export default function SignInSide() {
               </div>
             </StepContent>
           </Step>
-        ))}
-      </Stepper>
-      {activeStep === steps.length && (
-        <Paper square elevation={0} className={classes.resetContainer}>
-          <Typography>All steps completed - you&apos;re all set!!</Typography>
-          <Button onClick={handleReset} className={classes.button}>
-            Reset
-          </Button>
-        </Paper>
-      )}
-    </div>
-  );
-}
-    </React.Fragment>
+          ))}
+        </Stepper>
+          {activeStep === steps.length && (
+          <Paper square elevation={0} className={classes.resetContainer}>
+            <Typography>All steps completed - you&apos;re all set!!</Typography>
+            <Button onClick={handleReset} className={classes.button}>
+              Reset
+            </Button>
+          </Paper>
+            )}
+            
+        </Grid>
+          <Grid item style={{marginLeft:2}} > 
+        <div className={classes.root}>
+          <Carousal />
+        </div>
+        </Grid>
+      </Grid>  
+      </div>
     
   );
 }
+</React.Fragment>
+    
+  );
+}
+
+//export default App;

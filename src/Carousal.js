@@ -1,3 +1,6 @@
+import React from 'react';
+//import Avatar from '@material-ui/core/Avatar';
+import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
@@ -12,30 +15,26 @@ const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
   {
-    label: 'San Francisco – Oakland Bay Bridge, United States',
+    label: 'Because We Care',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      require('./livebetter.png'),
   },
   {
-    label: 'Bird',
+    label: 'Monitor your blood pressure',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+      require('./bp.png'),
   },
   {
-    label: 'Bali, Indonesia',
+    label: 'Monitor your blood sugar levels',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250&q=80',
+    require('./diabetes-glucose-level-chart.jpg'),
   },
   {
-    label: 'NeONBRAND Digital Marketing, Las Vegas, United States',
+    label: 'Visualize your emotions',
     imgPath:
-      'https://images.unsplash.com/photo-1518732714860-b62714ce0c59?auto=format&fit=crop&w=400&h=250&q=60',
+      require('./emoji.jpg'),
   },
-  {
-    label: 'Goč, Serbia',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
+  
 ];
 
 const useStyles = makeStyles(theme => ({
@@ -51,7 +50,7 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 255,
+    height: 350,
     display: 'block',
     maxWidth: 400,
     overflow: 'hidden',
@@ -80,7 +79,7 @@ function SwipeableTextMobileStepper() {
   return (
     <div className={classes.root}>
       <Paper square elevation={0} className={classes.header}>
-        <Typography>{tutorialSteps[activeStep].label}</Typography>
+        <Typography color="primary" style={{marginTop:10}}>{tutorialSteps[activeStep].label}</Typography>
       </Paper>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
