@@ -18,11 +18,10 @@ export default function Chart(args) {
 
   var array = [];
   const indicatorData = [];
-  console.log("MyJson")
-  console.log(args.json)
-  console.log(args.indicator)
+  // console.log("MyJson")
+  // console.log(args.json)
+  // console.log(args.indicator)
 if (args.json && args.json.indicators && args.json.indicators.length){
-  console.log('Cond passed')
   Object.keys(args.json.indicators).forEach(function(key) {
     if (args.json.indicators[key].indicator_name == args.indicator) {
       array.push(args.json.indicators[key].observations);
@@ -33,7 +32,7 @@ if (args.json && args.json.indicators && args.json.indicators.length){
   });
 }
 
-console.log(indicatorData)
+// console.log(indicatorData)
 
   
   return (

@@ -29,20 +29,30 @@ const useStyles = makeStyles(theme => ({
 
 export default function Details(args) {
 
-  var indicators = args.json.indicators;
+  console.log("MyJson2")
+  console.log(args.json)
+
+ 
   var indicatorNames = [];
   var observationsNumber = [];
   var observationPeriod = [];
 
   var i;
   var j;
+  
 
-  Object.keys(indicators).forEach(function(key) { 
-    indicatorNames.push(args.json.indicators[key].indicator_name);
-    observationsNumber.push(args.json.indicators[key].observations_number);
-    observationPeriod.push(args.json.indicators[key].observation_period[0]);   
+  if (args.json && args.json.indicators&& args.json.indicators.length) {  
+    
+    var indicators = args.json.indicators; 
+    Object.keys(indicators).forEach(function(key) { 
+      indicatorNames.push(args.json.indicators[key].indicator_name);
+      observationsNumber.push(args.json.indicators[key].observation_number);
+      observationPeriod.push(args.json.indicators[key].observation_period[0] + '  -  ' + args.json.indicators[key].observation_period[1]);   
 
-  });
+    });
+  }
+  console.log(indicatorNames)
+  console.log(observationsNumber)
 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
@@ -53,14 +63,16 @@ export default function Details(args) {
 
 
   const items = []
-
-  for (i = 0; i < indicators.length; i++) { 
+  console.log(indicators)
+  for (i = 0;  indicators && i < indicators.length; i++) { 
 
     const indicatorData = [];
 
     for (j = 0; j < indicators[i].observations.length; j++) { 
       indicatorData.push(createData(indicators[i].observations[j].observation_date, parseFloat(indicators[i].observations[j].observation_value), indicators[i].observations[j].observation_notes));
     };  
+
+    console.log(args.json)
 
     items.push(
       <ExpansionPanel expanded={expanded === i} onChange={handleChange(i)}>

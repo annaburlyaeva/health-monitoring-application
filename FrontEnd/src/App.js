@@ -10343,7 +10343,7 @@ function App() {
       );
    }, []);
 
-   console.log(sourceData);
+   // console.log(sourceData);
 
    const [indicatorsData, setIndicatorsData] = useState([]);
 
@@ -10400,8 +10400,8 @@ function App() {
 
      
   const createSelectItems = (json) => {
-   console.log("test");
-   console.log(indicatorsData);
+   // console.log("test");
+   // console.log(indicatorsData);
    var arr=[];
 
    if (json){
@@ -10410,7 +10410,7 @@ function App() {
       }); 
    }
       
-   console.log(arr)
+   //console.log(arr)
     return (
       <Select native value={state.indicator}          
                 onChange={handleChange('indicator')}
@@ -10511,7 +10511,7 @@ function App() {
             {/* Data */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
-                <Details json={full_json} />
+                <Details json={sourceData} />
               </Paper>
             </Grid>
           </Grid>
