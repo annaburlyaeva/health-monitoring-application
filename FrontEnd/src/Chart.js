@@ -1,16 +1,12 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 import Title from './Title';
-import { mdiCloseOutline } from '@mdi/js';
 
 // Generate Data
 function createData(date, value) {
   return { date, value };
 }
 
-
-
-const indicatorData = [];
 var i;
 
 export default function Chart(args) {
@@ -18,9 +14,7 @@ export default function Chart(args) {
 
   var array = [];
   const indicatorData = [];
-  // console.log("MyJson")
-  // console.log(args.json)
-  // console.log(args.indicator)
+
 if (args.json && args.json.indicators && args.json.indicators.length){
   Object.keys(args.json.indicators).forEach(function(key) {
     if (args.json.indicators[key].indicator_name == args.indicator) {
@@ -32,15 +26,11 @@ if (args.json && args.json.indicators && args.json.indicators.length){
   });
 }
 
-// console.log(indicatorData)
-
-  
   return (
     <React.Fragment>
       <Title>Visualization</Title>
       <ResponsiveContainer>
         <LineChart
-          // data={data}
           data={indicatorData}
           margin={{
             top: 16,

@@ -29,10 +29,6 @@ const useStyles = makeStyles(theme => ({
 
 export default function Details(args) {
 
-  console.log("MyJson2")
-  console.log(args.json)
-
- 
   var indicatorNames = [];
   var observationsNumber = [];
   var observationPeriod = [];
@@ -51,9 +47,7 @@ export default function Details(args) {
 
     });
   }
-  console.log(indicatorNames)
-  console.log(observationsNumber)
-
+ 
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -63,7 +57,7 @@ export default function Details(args) {
 
 
   const items = []
-  console.log(indicators)
+
   for (i = 0;  indicators && i < indicators.length; i++) { 
 
     const indicatorData = [];
@@ -72,7 +66,6 @@ export default function Details(args) {
       indicatorData.push(createData(indicators[i].observations[j].observation_date, parseFloat(indicators[i].observations[j].observation_value), indicators[i].observations[j].observation_notes));
     };  
 
-    console.log(args.json)
 
     items.push(
       <ExpansionPanel expanded={expanded === i} onChange={handleChange(i)}>
