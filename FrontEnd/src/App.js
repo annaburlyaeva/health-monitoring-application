@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,36 +10,21 @@ import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import { mainListItems, secondaryListItems } from './listItems';
-
 import { makeStyles } from '@material-ui/core/styles';
-
 import Chart from './Chart';
 import Details from './Details';
-
-
-
-
 import './App.css';
 import { Button } from '@material-ui/core';
-
-
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
-
-
 import OutlinedInput from '@material-ui/core/OutlinedInput';
-
 import InputLabel from '@material-ui/core/InputLabel';
-
 import Select from '@material-ui/core/Select';
-
 import NativeSelect from '@material-ui/core/NativeSelect';
-
 import Icon from '@mdi/react'
 import { mdiAccountBadgeHorizontalOutline } from '@mdi/js'
 import ReactDOM from 'react'
@@ -10196,10 +10181,68 @@ var json = {
      }
   ]
 };
-    var arr = [];
-    var text = [];
-    let items = [];
-    var i;
+   //  var arr = [];
+   //  var text = [];
+   //  let items = [];
+   //  var i;    
+
+
+   //  const useEffect1 = () => {
+   //    fetch('http://127.0.0.1:5000/user_json').then(response => 
+   //      response.json().then(data => {
+   //           console.log(data);
+   //       })
+   //    );
+  
+   //  }; 
+
+   //  {useEffect1()};
+
+   //  const useEffect2 = () => {
+   //    fetch('http://127.0.0.1:5000/indicators').then(response => 
+   //      response.json().then(data => {
+   //       //   return data;
+   //          console.log(data);
+   //       })
+   //    );
+  
+   //  };
+
+   //   {useEffect2()};
+
+   
+
+   // async function apiGetAll () {
+   //    const resp = await fetch('http://127.0.0.1:5000/user_json').then(response => 
+   //      response.json().then(data => {
+   //          return data
+   //       })
+   //    );
+  
+   //  }; 
+ 
+   // console.log(resp);
+
+   // async function apiGetAll () {
+   //    try {
+   //      const resp = await fetch('http://127.0.0.1:5000/user_json')
+   //      console.log(resp)
+   //      return resp
+   //    } catch (err) {
+   //         console.log(err)
+   //      }
+   // };
+
+
+   // componentDidMount () {
+   //    fetch(URL)
+   //      .then(response => response.json())
+   //     .then (json => 
+   //           this.setState({
+   //           resources: json
+   //      }))
+   //   };
+   
     
     
 const drawerWidth = 240;
@@ -10289,6 +10332,29 @@ const useStyles = makeStyles(theme => ({
 
 
 function App() {
+
+   const [sourceData, setSourceData] = useState([]);
+
+   useEffect(() => {
+      fetch("http://127.0.0.1:5000/user_json").then(response =>
+         response.json().then(data => {
+            setSourceData(data);
+         })
+      );
+   }, []);
+
+   console.log(sourceData);
+
+   const [indicatorsData, setIndicatorsData] = useState([]);
+
+   useEffect(() => {
+      fetch("http://127.0.0.1:5000/indicators").then(response =>
+         response.json().then(data => {
+            setIndicatorsData(data);
+         })
+      );
+   }, []);
+ 
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => {
@@ -10300,8 +10366,7 @@ function App() {
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [state, setState] = React.useState({
-    indicator: '',
-    first_indicator: 'hello'
+    indicator: ''
   });
 
 
@@ -10320,13 +10385,32 @@ function App() {
     });
   };
 
+//   var arr2 = [];
+//   Object.keys(indicatorsData).forEach(function(key) {
+//     arr2.push(indicatorsData[key]);
+//   }); 
+
+//   console.log(arr2)
+
+//   {arr2[0].map(item => {
+//    return(          
+//      <option value={item.indicator_name}>{item.indicator_name}</option>
+//    );
+//    })} 
+
      
   const createSelectItems = (json) => {
-    var arr = [];
-    Object.keys(json).forEach(function(key) {
+   console.log("test");
+   console.log(indicatorsData);
+   var arr=[];
+
+   if (json){
+      Object.keys(json).forEach(function(key) {
       arr.push(json[key]);
-    });
-    
+      }); 
+   }
+      
+   console.log(arr)
     return (
       <Select native value={state.indicator}          
                 onChange={handleChange('indicator')}
@@ -10336,7 +10420,7 @@ function App() {
               >
       
       <option value="" />
-       {arr[0].map(item => {
+       {(arr.length==0 || arr[0].length == 0)?'':arr[0].indicators.map(item => {
         return(          
           <option value={item.indicator_name}>{item.indicator_name}</option>
         );
@@ -10344,6 +10428,7 @@ function App() {
       </Select>
     )
   };
+  
 
   return (
     <div className={classes.root}>
@@ -10408,7 +10493,7 @@ function App() {
                 Indicator
               </InputLabel>
 
-              {createSelectItems(json)}
+              {createSelectItems({indicatorsData})}
 
             </FormControl>             
             
@@ -10419,7 +10504,7 @@ function App() {
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <Chart  json={full_json} indicator={state.indicator}/>
+                <Chart  json={sourceData} indicator={state.indicator}/>
               </Paper>
             </Grid>
             

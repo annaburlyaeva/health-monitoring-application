@@ -62,8 +62,6 @@ export default function Details(args) {
       indicatorData.push(createData(indicators[i].observations[j].observation_date, parseFloat(indicators[i].observations[j].observation_value), indicators[i].observations[j].observation_notes));
     };  
 
-    console.log(indicatorData);
-
     items.push(
       <ExpansionPanel expanded={expanded === i} onChange={handleChange(i)}>
           <ExpansionPanelSummary
