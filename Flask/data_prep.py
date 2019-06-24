@@ -1,6 +1,5 @@
 
 def data_prep(db, username):
-        from config import password
         from datetime import datetime
         import numpy as np
         import pandas as pd
@@ -11,7 +10,7 @@ def data_prep(db, username):
         from sqlalchemy.orm import Session
         from sqlalchemy import create_engine, func, inspect, and_, or_
 
-        # password = ''
+        password = 'S3q9wxy4'
         engine = create_engine(f'mysql://root:{password}@127.0.0.1:3306/{db}',pool_pre_ping=True)
         inspector = inspect(engine)
 
