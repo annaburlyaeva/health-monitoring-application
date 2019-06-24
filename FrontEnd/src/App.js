@@ -28,6 +28,7 @@ import Icon from '@mdi/react'
 import { mdiAccountBadgeHorizontalOutline } from '@mdi/js'
 import WelcomePage from './WelcomePage';
 import AddData from './AddData';
+import UserAccount from './UserAccount';
 
 
 const drawerWidth = 240;
@@ -229,7 +230,7 @@ function App() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             MyHealthApp
           </Typography>
-          <IconButton color="inherit">
+          {/* <IconButton color="inherit">
             <Badge> 
               <Icon path={mdiAccountBadgeHorizontalOutline}
                 size={1.5}
@@ -237,7 +238,8 @@ function App() {
                 color="rgb(255, 255, 255)"
               />
             </Badge>
-          </IconButton>
+          </IconButton> */}
+          <UserAccount />
         </Toolbar>
       </AppBar>
       

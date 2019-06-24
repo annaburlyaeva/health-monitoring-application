@@ -175,7 +175,8 @@ export default function AddData() {
                     shrink: true,
                     }}
                 />
-            
+               
+             
                   <TextField
                       id="outlined-select-type"
                       select
@@ -212,9 +213,8 @@ export default function AddData() {
                       margin="normal"
                       variant="outlined"
                       // placeholder= ''
-                  />  
-                
-            
+                  /> 
+                  
                       <TextField
                           id="outlined"
                           fullWidth
