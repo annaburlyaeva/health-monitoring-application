@@ -26,6 +26,8 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import Icon from '@mdi/react'
 import { mdiAccountBadgeHorizontalOutline } from '@mdi/js'
+import WelcomePage from './WelcomePage';
+import AddData from './AddData';
 
 
 const drawerWidth = 240;
@@ -113,6 +115,9 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
+console.log("hello")
+
+var show=5;
 
 function App() {
 
@@ -195,10 +200,21 @@ function App() {
       </Select>
     )
   };
-  
+  show-=1;
+  console.log("Show: "+show);
+  console.log("Main page")
+
+  // const [openAddData, setOpenAddData] = React.useState(false);
+
+  // function handleAddDataClick() {
+  //   console.log("AddData clicked")
+  //   setOpenAddData(true);
+  // }
 
   return (
     <div className={classes.root}>
+      {show>0?<WelcomePage />:""}
+      {/* {openAddData?<AddData />:""} */}
       <AppBar position="absolute"  className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -211,7 +227,7 @@ function App() {
             <MenuIcon />
           </IconButton>
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            Health Monitor
+            MyHealthApp
           </Typography>
           <IconButton color="inherit">
             <Badge> 
@@ -264,14 +280,16 @@ function App() {
 
             </FormControl>             
             
-            <Button variant="outlined" size="large" color="primary" className={classes.buttonHeight}>ADD NEW DATA</Button> 
-            
+            {/* <Button onClick={handleAddDataClick} variant="outlined" size="large" color="primary" className={classes.buttonHeight}>ADD NEW DATA</Button>  */}
+            <AddData />
             </Grid>
+            
 
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
-                <Chart  json={sourceData} indicator={state.indicator}/>
+                {!state.indicator?<Typography style={{color: '#9c9c9c'}}>Please, choose an indicator from the list above</Typography>:""}
+                {state.indicator?<Chart  json={sourceData} indicator={state.indicator}/>:""}
               </Paper>
             </Grid>
             

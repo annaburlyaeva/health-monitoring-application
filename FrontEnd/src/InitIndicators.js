@@ -115,6 +115,7 @@ export default function DetailedExpansionPanel() {
                 helperText="Please select the indicator's type"
                 margin="normal"
                 variant="outlined"
+                placeholder= "e.g. Numeric"
             >
                 {types.map(option => (
                 <MenuItem key={option.value} value={option.value}>

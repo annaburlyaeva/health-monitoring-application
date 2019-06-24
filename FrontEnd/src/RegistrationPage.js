@@ -140,7 +140,7 @@ export default function Registration() {
                   You have successfully entered your information. Now you can sign in and visit your personal dashboard.
                 </Typography>
                 <Button onClick={handleClose} className={classes.button} color='primary' variant='contained' >
-                  Go to dashboard
+                  CONFIRM
                 </Button>
               </React.Fragment>
             ) : (
