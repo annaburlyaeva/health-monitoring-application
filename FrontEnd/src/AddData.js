@@ -81,12 +81,44 @@ const useStyles = makeStyles(theme => ({
 
 const indicators_list = [
   {
-    value: "Slow acting insulin",
-    label: "Slow acting insulin"
+    value: "Slow acting insulin (morning intake dose)",
+    label: "Slow acting insulin (morning intake dose)"
+  },
+  {
+    value: "Fast acting insulin (morning intake dose)",
+    label: "Fast acting insulin (morning intake dose)"
+  },
+  {
+    value: "Fast acting insulin (lunch intake dose)",
+    label: "Fast acting insulin (lunch intake dose)"
+  },
+  {
+    value: "Fast acting insulin (dinner intake dose)",
+    label: "Fast acting insulin (dinner intake dose)"
   },
   {
     value: "Morning glucose level",
     label: "Morning glucose level"
+  },
+  {
+    value: "Lunch glucose level",
+    label: "Lunch glucose level"
+  },
+  {
+    value: "Afternoon glucose level",
+    label: "Afternoon glucose level"
+  },
+  {
+    value: "Dinner glucose level",
+    label: "Dinner glucose level"
+  },
+  {
+    value: "Evening glucose level",
+    label: "Evening glucose level"
+  },
+  {
+    value: "Fast insulin (late evening intake dose)",
+    label: "Fast insulin (late evening intake dose)"
   },
   {
     value: "Late evening snack",
@@ -126,6 +158,12 @@ export default function AddData() {
 
 
     console.log("AddData")
+
+    const [indicator_name, setIndicatorName] = React.useState("");
+    const [record_date, setDate] = React.useState("");    
+    const [indicator_value, setIndicatorValue] = React.useState("");    
+    const [notes, setNote] = React.useState("");
+    console.log(record_date);
     return (
       
       // <div className={classes.root}>
@@ -171,20 +209,20 @@ export default function AddData() {
                     fullWidth
                     defaultValue="2019-06-29"
                     className={classes.textField}
+                    onChange={e => setDate(e.target.value)}
                     InputLabelProps={{
                     shrink: true,
                     }}
-                />
-               
+                    />               
              
                   <TextField
                       id="outlined-select-type"
                       select
                       label="Indicator"
                       className={classes.textField}
-                      value={values.indicator}
+                      value={indicator_name}
                       fullWidth
-                      onChange={handleChange("indicator")}
+                      onChange={e => setIndicatorName(e.target.value)}
                       SelectProps={{
                       MenuProps: {
                           className: classes.menu
@@ -206,6 +244,7 @@ export default function AddData() {
                       id="outlined-name"
                       label="Value"
                       fullWidth
+                      onChange={e => setIndicatorValue(e.target.value)}
                       className={classes.textField}
                       InputLabelProps={{
                           shrink: true
@@ -219,6 +258,7 @@ export default function AddData() {
                           id="outlined"
                           fullWidth
                           label="Notes"
+                          onChange={e => setNote(e.target.value)}
                           placeholder='e.g. every 4 hours'
                           className={classes.textField}
                           margin="normal"
@@ -232,7 +272,25 @@ export default function AddData() {
         </ExpansionPanelDetails>
         <Divider />
         <ExpansionPanelActions>
-          <Button variant='contained' size="medium" color="secondary">
+          <Button variant='contained' size="medium" color="secondary"
+            onClick={async () => {
+              const data = { indicator_name, record_date, indicator_value, notes };
+              const response = await fetch("http://127.0.0.1:5000/add_data", {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data),
+                mode: 'no-cors'
+              });
+  
+              if (response.ok) {
+                console.log("response worked!");
+                // onNewMovie(movie);
+                // setDate("");
+              }
+            }}
+            >
             Confirm
           </Button>
         </ExpansionPanelActions>

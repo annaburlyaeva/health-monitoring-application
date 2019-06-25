@@ -14,7 +14,6 @@ import Badge from '@material-ui/core/Badge';
 import Icon from '@mdi/react'
 import { mdiAccountBadgeHorizontalOutline } from '@mdi/js'
 import Grid from '@material-ui/core/Grid';
-// import juliette_leblanc from "/french_lady.jpg";
 
 
 const useStyles = makeStyles(theme => ({

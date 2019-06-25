@@ -1,9 +1,6 @@
 import React from 'react';
-//import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
-import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -78,9 +75,7 @@ function SwipeableTextMobileStepper() {
 
   return (
     <div className={classes.root}>
-      {/* <Paper square elevation={0} className={classes.header}> */}
-        <Typography variant="h6" color="primary" style={{marginBottom:10}}>{tutorialSteps[activeStep].label}</Typography>
-      {/* </Paper> */}
+      <Typography variant="h6" color="primary" style={{marginBottom:10}}>{tutorialSteps[activeStep].label}</Typography>
       <AutoPlaySwipeableViews
         axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
         index={activeStep}
@@ -95,7 +90,7 @@ function SwipeableTextMobileStepper() {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      {/* <Paper square>  */}
+
       <MobileStepper
         steps={maxSteps}
         position="static"
@@ -115,7 +110,7 @@ function SwipeableTextMobileStepper() {
           </Button>
         }
       />
-      {/* </Paper> */}
+
     </div>
   );
 }

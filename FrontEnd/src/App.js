@@ -6,7 +6,6 @@ import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -18,14 +17,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Chart from './Chart';
 import Details from './Details';
 import './App.css';
-import { Button } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
-import Icon from '@mdi/react'
-import { mdiAccountBadgeHorizontalOutline } from '@mdi/js'
 import WelcomePage from './WelcomePage';
 import AddData from './AddData';
 import UserAccount from './UserAccount';
@@ -230,16 +225,6 @@ function App() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             MyHealthApp
           </Typography>
-          {/* <IconButton color="inherit">
-            <Badge> 
-              <Icon path={mdiAccountBadgeHorizontalOutline}
-                size={1.5}
-                horizontal                
-                color="rgb(255, 255, 255)"
-              />
-            </Badge>
-          </IconButton> */}
-          <UserAccount />
         </Toolbar>
       </AppBar>
       
@@ -281,8 +266,7 @@ function App() {
               {createSelectItems({indicatorsData})}
 
             </FormControl>             
-            
-            {/* <Button onClick={handleAddDataClick} variant="outlined" size="large" color="primary" className={classes.buttonHeight}>ADD NEW DATA</Button>  */}
+
             <AddData />
             </Grid>
             
