@@ -1,25 +1,12 @@
-#Project: Health Monitoring Application
-
-This project represents a tool to log, monitor and visualize various indicators about specific health conditions.
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-Before running available scripts you should install React.js and Material-UIhttps://material-ui.com/getting-started/installation/ (https://www.robinwieruch.de/react-js-windows-setup/; https://www.robinwieruch.de/react-js-macos-setup/; )
 
 ## Available Scripts
 
 In the project directory, you can run:
 
-### `Create_db`
-
-With MySQl script you can create a database with test data.
-
-### `app.py`
-
-Script (./Flask/app.py) runs python server with connection to the database.
-
 ### `npm start`
 
-App.js (./Front-end/src) runs the app in the development mode.<br>
+Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 The page will reload if you make edits.<br>
