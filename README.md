@@ -1,4 +1,4 @@
-#Project: Health Monitoring Application
+# Project: Health Monitoring Application
 
 This project represents a tool to log, monitor and visualize various indicators about specific health conditions.
 
