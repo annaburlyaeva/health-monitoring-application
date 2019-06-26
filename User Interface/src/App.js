@@ -225,6 +225,7 @@ function App() {
           <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
             MyHealthApp
           </Typography>
+          <UserAccount />
         </Toolbar>
       </AppBar>
       
