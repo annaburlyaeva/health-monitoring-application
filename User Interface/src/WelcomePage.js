@@ -1,5 +1,3 @@
-// 
-
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -28,11 +26,9 @@ import Carousel from './Carousel';
 import Container from '@material-ui/core/Container';
 import SignIn from './SignIn';
 
-//const imgMyimageexample = require('./pic.jpg');
 const useStyles = makeStyles(theme => ({
   root: {
     height: '100vh',
-    // display: 'flex',
   },
   
   image: {
@@ -96,21 +92,6 @@ function getStepContent(step) {
   }
 }
 
-// const useStyles = makeStyles(theme => ({
-//   form: {
-//     display: 'flex',
-//     flexDirection: 'column',
-//     margin: 'auto',
-//     width: 'fit-content',
-//   },
-//   formControl: {
-//     marginTop: theme.spacing(2),
-//     minWidth: 120,
-//   },
-//   formControlLabel: {
-//     marginTop: theme.spacing(1),
-//   },
-// }));
 
 export default function WelcomePage() {
   //console.log("This is welcome page"+ args.openDialog)
@@ -138,9 +119,6 @@ export default function WelcomePage() {
 
     const [openSignIn, setOpenSignIn] = React.useState(false);
 
-    // function handleClickOpen() {
-    //   setOpen(true);
-    // }
 
     function handleClose() {
       console.log("close")
@@ -174,7 +152,7 @@ export default function WelcomePage() {
         aria-labelledby="max-width-dialog-title"
       >
         <DialogTitle id="max-width-dialog-title" style={{backgroundColor: '#3f51b5', height: '5vh'}}>
-          <Grid container justify="space-between" alignItems="flex-start">          
+          <Grid container justify="space-between" alignItems="stretch">          
             <Typography variant="h9" align="left" style={{ color: '#ffffff'}}>
               MyHealthApp
             </Typography>
@@ -185,9 +163,7 @@ export default function WelcomePage() {
         </DialogTitle>
 
         <DialogContent>
-            {/* <Typography variant="h5" align="center" color="primary">
-            Welcome to your Health Monitoring App
-            </Typography> */}
+
             <Grid container spacing={6} justify="space-evenly" alignItems="flex-start" > 
                 <Grid item xs={5} style={{ marginLeft: 100}}>
                 <Typography variant="h6" align="left" color="primary" display = "inline">Only 3 Simple Steps to Get Started...</Typography>

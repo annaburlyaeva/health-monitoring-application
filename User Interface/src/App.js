@@ -12,7 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import MenuIcon from '@material-ui/icons/Menu';
 import Drawer from '@material-ui/core/Drawer';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import { mainListItems, secondaryListItems } from './listItems';
+// import { mainListItems, secondaryListItems } from './listItems';
 import { makeStyles } from '@material-ui/core/styles';
 import Chart from './Chart';
 import Details from './Details';
@@ -21,9 +21,25 @@ import FormControl from '@material-ui/core/FormControl';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
 import WelcomePage from './WelcomePage';
 import AddData from './AddData';
 import UserAccount from './UserAccount';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import Icon from '@mdi/react'
+import { mdiFileDocumentBoxMultipleOutline } from '@mdi/js'
+import { mdiPill } from '@mdi/js'
+import { mdiFormatListBulletedType } from '@mdi/js'
+import { mdiFlattr } from '@mdi/js'
+import Interactions from './Interactions';
+import Button from '@material-ui/core/Button';
+import ScatterPlots from './ScatterPlots';
+import RegressionResults from './RegressionResults';
 
 
 const drawerWidth = 240;
@@ -115,6 +131,15 @@ console.log("hello")
 
 var show=5;
 
+const pages = {
+  DASHBOARD: 'Dashboard',
+  INTERACTIONS: 'Interactions'
+};
+
+var page = pages.DASHBOARD;
+
+
+
 function App() {
 
    const [sourceData, setSourceData] = useState([]);
@@ -143,14 +168,44 @@ function App() {
   const handleDrawerOpen = () => {
     setOpen(true);
   };
+
+  // const [analysisData, setAnalysisData] = useState([]);
+
+  const [analysisData, setAnalysisData] = React.useState();
+
+
+
+  const handleInteractionsPost = () => {
+    console.log("handleInteractionsPost");
+    console.log(dat);
+
+    fetch("http://127.0.0.1:5000/interactions_data",{
+      method: "POST",
+      body: JSON.stringify(dat)
+    }).then(response =>
+        response.json().then(data => {
+          console.log(JSON.parse(data));
+          setAnalysisData(JSON.parse(data))
+        })
+      );
+
+  };
+
+
+  console.log(analysisData);
+
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   const [state, setState] = React.useState({
-    indicator: ''
+    indicator: '',
+    indicator2: ''
   });
+
 
 
   const inputLabel = React.useRef(null);
@@ -170,23 +225,19 @@ function App() {
 
 
   const createSelectItems = (json) => {
-
    var arr=[];
-
    if (json){
       Object.keys(json).forEach(function(key) {
       arr.push(json[key]);
       }); 
    }
-
     return (
       <Select native value={state.indicator}          
-                onChange={handleChange('indicator')}
+                onChange={handleChange('indicator')}//
                 input={
                   <OutlinedInput name="indicator" labelWidth={labelWidth} id="outlined-age-native-simple" />
                 }
-              >
-      
+              >    
       <option value="" />
        {(arr.length==0 || arr[0].length == 0)?'':arr[0].indicators.map(item => {
         return(          
@@ -196,21 +247,81 @@ function App() {
       </Select>
     )
   };
+  const createSelectItems2 = (json) => {
+    var arr=[];
+    if (json){
+       Object.keys(json).forEach(function(key) {
+       arr.push(json[key]);
+       }); 
+    }
+    console.log('ind2')
+    console.log(state.indicator2)
+     return (
+       <Select native value={state.indicator2}          
+                 onChange={handleChange('indicator2')}//
+                 input={
+                   <OutlinedInput name="indicator2" labelWidth={labelWidth} id="outlined-age-native-simple" />
+                 }
+               >    
+       <option value="" />
+        {(arr.length==0 || arr[0].length == 0)?'':arr[0].indicators.map(item => {
+         return(          
+           <option value={item.indicator_name}>{item.indicator_name}</option>
+         );
+       })} 
+       </Select>
+     )
+   };
+ 
+
   show-=1;
   console.log("Show: "+show);
-  console.log("Main page")
+  console.log("Main page");
+  
 
-  // const [openAddData, setOpenAddData] = React.useState(false);
 
-  // function handleAddDataClick() {
-  //   console.log("AddData clicked")
-  //   setOpenAddData(true);
-  // }
+  const [pageChange, setPageChange] = React.useState(false);
+
+  function handleInteractionsClick() {
+    console.log("Interactions clicked")
+    page = pages.INTERACTIONS;
+    console.log(page)
+    setPageChange(!pageChange);
+  }
+
+  function handleDashboardClick() {
+    console.log("Dashboard clicked")
+    page = pages.DASHBOARD;
+    console.log(page);
+    setPageChange(!pageChange);
+  }
+
+  const [stateOffset, setOffsetState] = React.useState({
+    offsetVal: 0
+  });
+
+  const handleOffsetChange = name => event => {
+    setOffsetState({
+      ...stateOffset,
+      [name]: event.target.value,
+    });
+  };
+
+    
+  const [ind1, setInd1] = React.useState(state.indicator);
+  const [ind2, setInd2] = React.useState(state.indicator2);
+  const [offset, setOffset] = React.useState(stateOffset.offsetVal);
+
+  console.log(ind1);
+  console.log(ind2);
+  console.log(offset);
+
+
+  const dat = {ind1, ind2, offset};
 
   return (
     <div className={classes.root}>
       {show>0?<WelcomePage />:""}
-      {/* {openAddData?<AddData />:""} */}
       <AppBar position="absolute"  className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
@@ -242,41 +353,114 @@ function App() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List> 
+          <div>
+          <ListItem button onClick={handleDashboardClick}>
+            <ListItemIcon>
+              <DashboardIcon />
+            </ListItemIcon>
+          <ListItemText primary="Dashboard" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <Icon path={mdiFileDocumentBoxMultipleOutline}
+                size={1}
+                horizontal
+                vertical
+                color="rgba(0, 0, 0, 0.54)"
+                />
+            </ListItemIcon>
+            <ListItemText primary="Reports" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <Icon path={mdiPill}
+                  size={1}
+                  horizontal
+                  vertical
+                  color="rgba(0, 0, 0, 0.54)"
+              />      
+            </ListItemIcon>
+            <ListItemText primary="Medications" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <Icon path={mdiFormatListBulletedType}
+                  size={1}
+                  horizontal
+                  vertical
+                  color="rgba(0, 0, 0, 0.54)"
+              />      
+            </ListItemIcon>
+            <ListItemText primary="Indicators" />
+          </ListItem>
+          <ListItem button onClick={handleInteractionsClick}>
+            <ListItemIcon>
+              <Icon path={mdiFlattr}
+                  size={1}
+                  horizontal
+                  vertical
+                  color="rgba(0, 0, 0, 0.54)"
+              />      
+            </ListItemIcon>
+            <ListItemText primary="Interactions" />
+          </ListItem>
+        </div>
+        </List>
         <Divider />
-        <List>{secondaryListItems}</List>
+        <List>
+          <div>
+          <ListSubheader inset>Saved reports</ListSubheader>
+          <ListItem button>
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Current week" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Current month" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon>
+              <AssignmentIcon />
+            </ListItemIcon>
+            <ListItemText primary="Year to Date" />
+          </ListItem>
+        </div>
+        </List>
       </Drawer>
  
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
+
+        {page==pages.DASHBOARD?<Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
             <Grid 
               container
               item xs={1.5}
               direction="row"
               justify="space-between"
-              alignItems="flex-start"
+              alignItems="stretch"
             >               
             
             <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
                 Indicator
               </InputLabel>
-
               {createSelectItems({indicatorsData})}
-
-            </FormControl>             
+            </FormControl>            
 
             <AddData />
-            </Grid>
-            
+            </Grid>  
 
             {/* Chart */}
             <Grid item xs={12}>
               <Paper className={fixedHeightPaper}>
                 {!state.indicator?<Typography style={{color: '#9c9c9c'}}>Please, choose an indicator from the list above</Typography>:""}
-                {state.indicator?<Chart  json={sourceData} indicator={state.indicator}/>:""}
+                {state.indicator ?<Chart  json={sourceData} indicator={state.indicator}/>:""}
               </Paper>
             </Grid>
             
@@ -286,9 +470,104 @@ function App() {
                 <Details json={sourceData} />
               </Paper>
             </Grid>
+
           </Grid>
 
-        </Container>
+        </Container>:""}
+
+
+        {page==pages.INTERACTIONS?<Container maxWidth="lg" className={classes.container}>
+          <Grid container spacing={4}>
+            <Grid 
+              container
+              item xs={1.5}
+              direction="row"
+              justify="space-between"
+              alignItems="stretch"
+            >               
+            
+            <FormControl variant="outlined" className={classes.formControl}
+            onChange={e => setInd1(e.target.value)}>
+              <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                Indicator
+              </InputLabel>
+              {createSelectItems({indicatorsData})}
+            </FormControl> 
+
+            <Button variant='contained' size="medium" color="secondary"
+              onClick= {handleInteractionsPost}>
+                PERFORM ANALYSIS
+            </Button>
+
+                        
+
+            <FormControl variant="outlined" className={classes.formControl}
+              onChange={e => setInd2(e.target.value)}>
+              <InputLabel ref={inputLabel} htmlFor="outlined-age-native-simple">
+                Indicator
+              </InputLabel>
+              {createSelectItems2({indicatorsData})}
+            </FormControl>           
+
+            </Grid>
+
+            <Grid
+              container
+              direction="row"
+              justify="center"
+              alignItems="center"
+            >
+
+            <FormControl className={classes.formControl} style={{minWidth: 150}}>
+              <InputLabel> Offset </InputLabel>
+              <Select
+                value={offset}          
+                onChange={e => setOffset(e.target.value)}
+                inputProps={{
+                  name: 'offset'
+                }}
+              >
+                <MenuItem value={0}>0</MenuItem>
+                <MenuItem value={1}>1</MenuItem>
+                <MenuItem value={2}>2</MenuItem>
+                <MenuItem value={3}>3</MenuItem>
+                <MenuItem value={4}>4</MenuItem>
+                <MenuItem value={5}>5</MenuItem>
+                <MenuItem value={6}>6</MenuItem>
+                <MenuItem value={7}>7</MenuItem>
+                <MenuItem value={8}>8</MenuItem>
+                <MenuItem value={9}>9</MenuItem>
+                <MenuItem value={10}>10</MenuItem>
+              </Select>
+            </FormControl>  
+
+            </Grid>         
+
+
+            <Grid item xs={12}>
+              <Paper className={fixedHeightPaper}>
+                {!state.indicator && !state.indicator2 ?<Typography style={{color: '#9c9c9c'}}>Please, choose indicators and offset value from the lists above </Typography>:""}
+                {state.indicator && state.indicator2 && analysisData?<Interactions  json={sourceData} indicator1={state.indicator} indicator2={state.indicator2} chart_json={analysisData}/>:""}
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Paper className={fixedHeightPaper}>
+              {state.indicator && state.indicator2 && analysisData?<ScatterPlots  json={sourceData} indicator1={state.indicator} indicator2={state.indicator2} chart_json={analysisData}/>:""}                
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12}>
+              <Paper className={fixedHeightPaper}>
+              {state.indicator && state.indicator2 && analysisData?<RegressionResults  json={sourceData} indicator1={state.indicator} indicator2={state.indicator2} chart_json={analysisData}/>:""}                
+              </Paper>
+            </Grid>
+            
+
+          </Grid>
+
+        </Container>:""}
+
       </main>
      
     </div>

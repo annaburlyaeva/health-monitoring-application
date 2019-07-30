@@ -50,7 +50,7 @@ def data_prep(db, username):
         obs_num = []
 
         for i in indicators_list:
-                no_of_obs = session.query(func.count(Users_Indicators_Values.indicator_value)).filter(Users_Indicators_Values.record_date <= end_date).filter(Users_Indicators_Values.record_date >= start_date).filter(Users_Indicators_Values.indicator_id == i).filter(Users_Indicators_Values.user_id == get_user_id).all()
+                no_of_obs = session.query(func.count(Users_Indicators_Values.indicator_value)).filter(Users_Indicators_Values.record_date <= end_date).filter(Users_Indicators_Values.record_date >= start_date).filter(Users_Indicators_Values.indicator_id == i).filter(Users_Indicators_Values.indicator_value!= "-99999").filter(Users_Indicators_Values.user_id == get_user_id).all()
         
 
                 num_of_obs = [result[0] for result in no_of_obs[:]]
@@ -80,7 +80,6 @@ def data_prep(db, username):
                 obs_results = session.query( Users_Indicators_Values.indicator_id, Users_Indicators_Values.record_date, Users_Indicators_Values.indicator_value, Users_Indicators_Values.notes).filter(Users_Indicators_Values.indicator_value!= "-99999").filter(Users_Indicators_Values.record_date >= start_date).filter(Users_Indicators_Values.record_date <= end_date).filter(Users_Indicators_Values.indicator_id==i).filter(Users_Indicators_Values.user_id == get_user_id).all()
 
                 for i in obs_results: 
-                #print(i[0],"\t",i[1], "\t", i[2], "\t", i[3])
 
                         ind_dict["ind_id"] = i[0]
                         ind_dict["observation_date"] = str(i[1])
@@ -108,15 +107,12 @@ def data_prep(db, username):
 
         for i in indicators_list:
                 ind_end_date = session.query(Users_Indicators_Values.record_date).order_by(Users_Indicators_Values.record_date.desc()).filter(Users_Indicators_Values.indicator_id==i).filter(Users_Indicators_Values.user_id == get_user_id).first()[0]
-        #print(ind_end_date)
-        
+
                 ind_start_date = session.query(Users_Indicators_Values.record_date).order_by(Users_Indicators_Values.record_date.asc()).filter(Users_Indicators_Values.indicator_id==i).filter(Users_Indicators_Values.user_id == get_user_id).first()[0]
-        #print(ind_start_date)
-        
-        
+
                 obs_period = ind_end_date - ind_start_date
                 period = obs_period.days
-        #print(period)
+
         
                 to_add = (ind_start_date.strftime('%Y-%m-%d'), ind_end_date.strftime('%Y-%m-%d'), period)
                 ind_obs_period.append(to_add)

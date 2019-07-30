@@ -7,6 +7,7 @@ from flask_mysqldb import MySQL
 from config import password
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS, cross_origin
+import data_interactions
 
 
 # create instance of Flask app
@@ -55,7 +56,11 @@ def index():
         f"Available Routes:<br/>"
         f"/user_json"
         f"<br/>"
-        f"/indicators")
+        f"/indicators"
+        f"<br/>"
+        f"/add_data (POST)"
+        f"<br/>"
+        f"/interactions_data (GET, POST)")
 
 
 @app.route('/user_json')
@@ -99,7 +104,16 @@ def add_data():
 
        return "Done", 201
 
-
+@app.route('/interactions_data', methods=['GET', 'POST']) #allow both GET and POST requests
+def interactions_data():
+    if request.method == 'POST': #this block is only entered when the form is submitted
+       request_data = request.get_json(force=True)
+       print('Req_data')
+       print(request_data)
+       print(request)
+       calc_result = data_interactions.timeseries_analysis('health_monitor_db', 'juliette_leblanc', request_data["ind1"], request_data["ind2"], request_data["offset"])
+       print(calc_result) 
+    return jsonify(calc_result), 201
 
 
 if __name__ == "__main__":

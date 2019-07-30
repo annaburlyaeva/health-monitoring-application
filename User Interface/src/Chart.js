@@ -1,10 +1,10 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer, CartesianGrid, Tooltip, Legend } from 'recharts';
 import Title from './Title';
 
 // Generate Data
-function createData(date, value) {
-  return { date, value };
+function createData(Date, Value) {
+  return { Date, Value };
 }
 
 var i;
@@ -39,18 +39,15 @@ if (args.json && args.json.indicators && args.json.indicators.length){
             left: 24,
           }}
         >
-          <XAxis dataKey="date">            
-            {/* <Label angle={0} position="center" style={{ textAnchor: 'middle' }}>
-              Date
-            </Label> */}
-          </XAxis> 
+          <XAxis dataKey="Date">  </XAxis> 
             
           <YAxis>
             <Label angle={270} position="left" style={{ textAnchor: 'middle' }}>
               Value
             </Label>
           </YAxis>
-          <Line type="monotone" dataKey="value" stroke="#556CD6" dot={true} />
+          <Tooltip />
+          <Line type="monotone" dataKey="Value" stroke="#556CD6" dot={true} />
         </LineChart>
       </ResponsiveContainer>
     </React.Fragment>
