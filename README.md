@@ -1,6 +1,12 @@
 # Project: Health Monitoring Application
 
 This project represents a tool to log, monitor and visualize various indicators about specific health conditions.
+MySQL database is used to store users’ data, 
+Python Flask-based web-server with SQLAlchemy - for data preprocessing and analysis,
+and web-based user interface with React.js and Material UI. 
+A user can see indicators dynamics, their correlation level and regression results. 
+It’s also possible to discover the cause-and-effect relations, even if there is a time lag between observations, just choosing the offset value for one of the indicators.
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 Before running available scripts you should install React.js and Material-UIhttps://material-ui.com/getting-started/installation/ (https://www.robinwieruch.de/react-js-windows-setup/; https://www.robinwieruch.de/react-js-macos-setup/; )
